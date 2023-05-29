@@ -1,8 +1,11 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import "./styles.css";
 import Todo from "../Todo";
 import TodoForm from "../TodoForm";
+import Search from "../Search";
+import Filter from "../Filter";
 export default function App() {
   const [todos, setTodos] = useState([
     {
@@ -24,6 +27,12 @@ export default function App() {
       isCompleted: false,
     },
   ]);
+
+  const [search, setSearch] = useState("");
+
+  const [filter, setFilter] = useState("All");
+
+  const [sort, setSort] = useState("Asc");
   const addTodo = (text, category) => {
     const newTodos = [
       ...todos,
@@ -52,18 +61,37 @@ export default function App() {
     );
     setTodos(newTodos);
   };
+
   return (
     <div className="app">
       <h1>Lista de tarefas</h1>
+      <Search search={search} setSearch={setSearch} />
+      <Filter filter={filter} setFilter={setFilter} setSort={setSort} />
       <div className="todo-list">
-        {todos.map((todo) => (
-          // eslint-disable-next-line react/jsx-key
-          <Todo
-            todo={todo}
-            removeTodo={removeTodo}
-            completeTodo={completeTodo}
-          />
-        ))}
+        {todos
+          .filter((todo) =>
+            filter === "All"
+              ? true
+              : filter === "Completed"
+              ? todo.isCompleted
+              : !todo.isCompleted
+          )
+          .filter((todo) =>
+            todo.text.toLowerCase().includes(search.toLowerCase())
+          )
+          .sort((a, b) =>
+            sort === "Asc"
+              ? a.text.localeCompare(b.text)
+              : b.text.localeCompare(a.text)
+          )
+          .map((todo) => (
+            // eslint-disable-next-line react/jsx-key
+            <Todo
+              todo={todo}
+              removeTodo={removeTodo}
+              completeTodo={completeTodo}
+            />
+          ))}
       </div>
       <TodoForm addTodo={addTodo} />
     </div>
