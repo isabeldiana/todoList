@@ -1,9 +1,17 @@
 body {
+  box-sizing: border-box;
   font-family: arial;
   background-color: #4285f4;
   color: black;
   margin: 5rem;
   padding: 30px;
+}
+
+@media (max-width: 600px) {
+  body {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .app {
@@ -12,6 +20,14 @@ body {
   background-color: #efefef;
   padding: 20px 30px;
   border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+  .app {
+    width: 85%;
+    margin: 0 auto;
+    padding: 20px;
+  }
 }
 
 h1 {
@@ -60,8 +76,21 @@ select {
   border-radius: 10px solid transparent #555;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
 }
+
+@media (max-width: 600px) {
+  .todo {
+    font-size: 12px;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .complete {
   background-color: #5cb85c;
 }

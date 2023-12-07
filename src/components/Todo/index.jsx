@@ -1,4 +1,7 @@
 /* eslint-disable react/prop-types */
+import { FaCheck } from "react-icons/fa";
+import { FaTrashCan } from "react-icons/fa6";
+
 const Todo = ({ todo, removeTodo, completeTodo }) => {
   return (
     <div
@@ -11,10 +14,10 @@ const Todo = ({ todo, removeTodo, completeTodo }) => {
       </div>
       <div className="buttons">
         <button className="complete" onClick={() => completeTodo(todo.id)}>
-          Completar
+          <FaCheck />
         </button>
         <button className="remove" onClick={() => removeTodo(todo.id)}>
-          X
+          <FaTrashCan />
         </button>
       </div>
     </div>
