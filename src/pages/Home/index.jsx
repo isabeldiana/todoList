@@ -2,10 +2,10 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import "./styles.css";
-import Todo from "../Todo";
-import TodoForm from "../TodoForm";
-import Search from "../Search";
-import Filter from "../Filter";
+import Todo from "../../components/Todo";
+import TodoForm from "../../components/TodoForm";
+import Search from "../../components/Search";
+import Filter from "../../components/Filter";
 export default function App() {
   const [todos, setTodos] = useState([
     {
